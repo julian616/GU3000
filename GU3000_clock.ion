@@ -1,0 +1,71 @@
+//GU256x128-3900 
+//Original sketch 
+/* NA202SD08FA VFD Display
+ Karel Reinhard 04/13/2016
+ Basic code for NA202SD08FA 20x2 VFD
+ With 14 pin connector see http://torretje.nl/futaba for pinout and datasheet
+ */
+ // the NORITAKE_VFD_GU3000 WAS USED
+ //#include <Wire.h>
+ //#include "Sodaq_DS3231.h"
+ #include "VFD_GU3000.h"
+/*
+ char weekDay[][4]= {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+ //year, month, date, hour, min, sec and week-day(starts from 0 and goes to 6)
+//writing any non-existent time-data may interfere with normal operation of the RTC.
+//Take care of week-day also.
+DateTime dt(2011, 11, 10, 15, 18, 0, 5);
+*/
+VFD_GU3000 vfd;
+ 
+void setup() 
+{
+  _delay_ms(500);
+  vfd.GU3000_clearScreen();
+  vfd.GU3000_home();
+  //vfd.begin(256,128);
+  //vfd.GU3000_reset();
+  //vfd.GU3000_init();
+  
+  Serial.begin(9600);
+  /*
+  Wire.begin();
+  rtc.begin();
+  rtc.setDateTime(dt);
+*/ 
+  vfd.GU3000_setScreenBrightness(25);
+ 
+}
+
+void loop() 
+{
+  vfd.GU3000_clearScreen();
+  /*
+  DateTime now = rtc.now(); //get the current date-time
+  vfd.GU3000_setCursor(50,60);
+    vfd.print(now.year(), DEC);
+    vfd.print('/');
+    vfd.print(now.month(), DEC);
+    vfd.print('/');
+    vfd.print(now.date(), DEC);
+    vfd.print(' ');
+    vfd.GU3000_setCursor(50,70);
+    vfd.print(now.hour(), DEC);
+    vfd.print(':');
+    vfd.print(now.minute(), DEC);
+    vfd.print(':');
+    vfd.print(now.second(), DEC);
+    vfd.GU3000_setCursor(50,75);  
+  vfd.print("julian  ");
+  */
+  double hhh = -666.65432;
+  int hh6 = -616.33;
+  Serial.println(hhh,DEC);
+  //vfd.println(hhh,DEC);
+  vfd.println(hh6,DEC);
+  Serial.println(hh6);
+  delay(5000);
+  delay(1000);
+  
+
+}
